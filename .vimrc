@@ -6,13 +6,6 @@ set encoding=utf-8
 set fileencodings=utf-8,cp932,euc-jp,iso-2022-jp
 
 " ----------------------------------------------------------------------
-" 256-color for MSYS / MinGW
-" ----------------------------------------------------------------------
-let &t_Co=256
-let &t_AF="\e[38;5;%dm"
-let &t_AB="\e[48;5;%dm"
-
-" ----------------------------------------------------------------------
 " Plugins
 " ----------------------------------------------------------------------
 set nocompatible
@@ -30,15 +23,16 @@ NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/git-vim'
 NeoBundle 'h1mesuke/unite-outline.git'
 NeoBundle 'tsukkee/unite-tag.git'
+NeoBundle 'ujihisa/unite-colorscheme'
 NeoBundle 'tpope/vim-surround'
+NeoBundle 'Shougo/git-vim'
 NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'tpope/vim-markdown.git'
-NeoBundle 'mattn/zencoding-vim'
 NeoBundle 'mattn/gist-vim'
 NeoBundle 'othree/eregex.vim'
+NeoBundle 'tpope/vim-markdown.git'
+NeoBundle 'mattn/zencoding-vim'
 NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'L9'
 NeoBundle 'FuzzyFinder'
@@ -48,6 +42,9 @@ NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'tomasr/molokai'
 NeoBundle 'matthewtodd/vim-twilight'
 NeoBundle 'nanotech/jellybeans.vim'
+NeoBundle 'croaker/mustang-vim'
+NeoBundle 'vim-scripts/Lucius'
+NeoBundle 'jpo/vim-railscasts-theme'
 
 filetype plugin indent on
 
@@ -59,6 +56,11 @@ let g:Powerline_symbols='fancy'
 " ----------------------------------------------------------------------
 syntax on
 set t_Co=256
+
+" 256-color for MSYS / MinGW
+let &t_Co=256
+let &t_AF="\e[38;5;%dm"
+let &t_AB="\e[48;5;%dm"
 
 set background=dark
 let g:solarized_termcolors=256
@@ -75,6 +77,9 @@ let g:molokai_original = 1
 colorscheme molokai
 "colorscheme twilight
 "colorscheme jellybeans
+"colorscheme mustang
+"colorscheme lucius
+"colorscheme railscasts
 
 " ----------------------------------------------------------------------
 " Configurations
