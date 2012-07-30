@@ -24,7 +24,7 @@ sample image - bash shell
 
 ![shell sample](https://github.com/ryu-blacknd/dotfiles/raw/master/screenshot_shell.png)
 
-sample image - vim
+sample image - vim (colorscheme is [Solarized](https://github.com/altercation/vim-colors-solarized))
 
 ![vim sample](https://github.com/ryu-blacknd/dotfiles/raw/master/screenshot_vim.png)
 

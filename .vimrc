@@ -42,6 +42,7 @@ NeoBundle 'othree/eregex.vim'
 NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'L9'
 NeoBundle 'FuzzyFinder'
+NeoBundle 'nginx.vim'
 
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'tomasr/molokai'
