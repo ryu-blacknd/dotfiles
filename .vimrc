@@ -66,7 +66,7 @@ let g:solarized_termtrans=1
 let g:solarized_degrade=0
 let g:solarized_bold=1
 let g:solarized_underline=1
-let g:solarized_italic=1
+let g:solarized_italic=0
 "let g:solarized_contrast="high"
 "let g:solarized_visibility="low"
 let g:molokai_original = 1
@@ -144,7 +144,7 @@ set pastetoggle=<C-e>
 "---------------------------------------------------------------------------
 " Tabs
 "---------------------------------------------------------------------------
-set showtabline=2
+"set showtabline=2
 nnoremap <Space>t t
 nnoremap <Space>T T
 nnoremap t <Nop>
