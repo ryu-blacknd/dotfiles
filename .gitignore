@@ -1,5 +1,4 @@
-.git*
 *.bak
 *.swp
-#.vim/bundle/*
+.vim/bundle
 
