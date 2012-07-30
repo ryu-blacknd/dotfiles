@@ -1,4 +1,5 @@
 *.bak
 *.swp
 .vim/bundle/*
+!.vim/bunlde/neobundle.vim
 
