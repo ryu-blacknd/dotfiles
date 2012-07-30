@@ -8,11 +8,12 @@
 ### how to use
 
     # cd
-    # git clone https://github.com/ryu-blacknd/dotfiles.git
+    # git clone git://github.com/ryu-blacknd/dotfiles.git
+    # git clone git://github.com/Shougo/neobundle.vim .vim/bundle/neobundle.vim
     # sh dotfiles/symlink.sh
     # vim
 
-    :NeoBundleInstall
+    :NeoBundleInstall!
     :q
 
 - you should to make [vimproc](https://github.com/Shougo/vimproc) on your system.
