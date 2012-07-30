@@ -68,7 +68,6 @@ let g:solarized_underline=1
 let g:solarized_italic=1
 "let g:solarized_contrast="high"
 "let g:solarized_visibility="low"
-
 let g:molokai_original = 1
 
 "colorscheme solarized
