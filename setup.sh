@@ -1,8 +1,12 @@
 #!/bin/sh
 
-DOT_FILES=( .dir_colors .fonts .tmux.conf .vim .vimrc )
+DOT_FILES=( .dir_colors .fonts .tmux.conf .vim .vimrc)
 
 for file in ${DOT_FILES[@]}
 do
-    ln -dis $HOME/dotfiles/$file $HOME/$file
+  if [ -a $HOME/$file ]; then
+    echo "File already exists: $file"
+  else
+    ln -s $HOME/dotfiles/$file $HOME/$file
+  fi
 done

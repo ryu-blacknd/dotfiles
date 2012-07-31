@@ -10,7 +10,7 @@
     # cd
     # git clone https://github.com/ryu-blacknd/dotfiles.git
     # git clone https://github.com/Shougo/neobundle.vim.git .vim/bundle/neobundle.vim
-    # sh dotfiles/setup.sh
+    # dotfiles/setup.sh
     # vim
 
     :NeoBundleInstall!
