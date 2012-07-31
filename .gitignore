@@ -2,5 +2,5 @@
 *.swp
 *.bak
 .DS_Store
-.vim/bundle/**/*
+.vim/bundle/
 

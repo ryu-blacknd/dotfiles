@@ -19,42 +19,39 @@ endif
 
 NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/vimproc'
-NeoBundle 'Shougo/vimshell'
-NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/unite.vim'
-NeoBundle 'h1mesuke/unite-outline.git'
-NeoBundle 'tsukkee/unite-tag.git'
-NeoBundle 'ujihisa/unite-colorscheme'
-NeoBundle 'tpope/vim-surround'
 NeoBundle 'Shougo/git-vim'
 NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'tpope/vim-markdown'
+NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'thinca/vim-ref'
 NeoBundle 'mattn/gist-vim'
-NeoBundle 'othree/eregex.vim'
-NeoBundle 'tpope/vim-markdown.git'
 NeoBundle 'mattn/zencoding-vim'
-NeoBundle 'Lokaltog/vim-powerline'
+NeoBundle 'tsukkee/unite-help'
+NeoBundle 'tsukkee/unite-tag'
+NeoBundle 'h1mesuke/unite-outline'
+NeoBundle 'othree/eregex.vim'
+NeoBundle 'scrooloose/nerdcommenter'
+NeoBundle 'lokaltog/vim-powerline'
+NeoBundle 'nathanaelkane/vim-indent-guides'
+NeoBundle 'taglist.vim'
 NeoBundle 'L9'
 NeoBundle 'FuzzyFinder'
-NeoBundle 'nginx.vim'
+NeoBundle 'evanmiller/nginx-vim-syntax'
 
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'tomasr/molokai'
-NeoBundle 'matthewtodd/vim-twilight'
 NeoBundle 'nanotech/jellybeans.vim'
-NeoBundle 'croaker/mustang-vim'
-NeoBundle 'vim-scripts/Lucius'
-NeoBundle 'jpo/vim-railscasts-theme'
+NeoBundle 'jnurmine/Zenburn'
 
 filetype plugin indent on
-
-set guifont=Inconsolata_for_Powerline:h13
-let g:Powerline_symbols='fancy'
 
 " ----------------------------------------------------------------------
 " ColorScheme
 " ----------------------------------------------------------------------
-syntax on
+syntax enable
 set t_Co=256
 
 " 256-color for MSYS / MinGW
@@ -71,15 +68,12 @@ let g:solarized_underline=1
 let g:solarized_italic=0
 "let g:solarized_contrast="high"
 "let g:solarized_visibility="low"
-let g:molokai_original = 1
+let g:molokai_original=1
 
 "colorscheme solarized
 colorscheme molokai
-"colorscheme twilight
 "colorscheme jellybeans
-"colorscheme mustang
-"colorscheme lucius
-"colorscheme railscasts
+"colorscheme zenburn
 
 " ----------------------------------------------------------------------
 " Configurations
@@ -103,14 +97,20 @@ set backspace=indent,eol,start
 set laststatus=2
 set showcmd
 set showmode
+
 set mouse=a
 set ttymouse=xterm2
+
+set guifont=Inconsolata_for_Powerline:h13
+let g:Powerline_symbols='fancy'
+let g:indent_guides_start_level=2
 
 " ----------------------------------------------------------------------
 " Edit
 " ----------------------------------------------------------------------
 set showmatch
-"autocmd BufWritePre * :%s/\s\+$//e
+autocmd BufWritePre * :%s/\s\+$//ge
+"autocmd BufWritePre * :%s/\t/    /ge
 "set autoindent
 "set smartindent
 set cindent
@@ -177,7 +177,7 @@ set wildmode=list:longest,full
 
 let g:acp_enableAtStartup = 0
 let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_enable_smart_case = 1 
+let g:neocomplcache_enable_smart_case = 1
 let g:neocomplcache_enable_underbar_completion = 1
 
 highlight Pmenu ctermbg=4
