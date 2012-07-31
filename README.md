@@ -8,9 +8,8 @@
 ### how to use
 
     # cd
-    # git clone [git://github.com/ryu-blacknd/dotfiles.git](git://github.com/ryu-blacknd/dotfiles.git)
-    # git clone [git://github.com/Shougo/neobundle.vim .vim/bundle/neobundle.vim](git://github.com/Shougo/neobundle.vim .vim/bundle/neobundle.
-    vim)
+    # git clone https://github.com/ryu-blacknd/dotfiles.git
+    # git clone https://github.com/Shougo/neobundle.vim.git .vim/bundle/neobundle.vim
     # sh dotfiles/symlink.sh
     # vim
 
