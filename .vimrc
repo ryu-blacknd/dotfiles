@@ -2,7 +2,6 @@
 " Encode
 " ----------------------------------------------------------------------
 set encoding=utf-8
-"set encoding=cp932
 set fileencodings=utf-8,cp932,euc-jp,iso-2022-jp
 
 " ----------------------------------------------------------------------
@@ -20,8 +19,8 @@ endif
 NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neocomplcache-snippets-complete'
 NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/git-vim'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-markdown'
@@ -44,14 +43,15 @@ NeoBundle 'evanmiller/nginx-vim-syntax'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'tomasr/molokai'
 NeoBundle 'nanotech/jellybeans.vim'
-NeoBundle 'jnurmine/Zenburn'
+NeoBundle 'jpo/vim-railscasts-theme'
+NeoBundle 'oguzbilgic/sexy-railscasts-theme'
 
 filetype plugin indent on
 
 " ----------------------------------------------------------------------
 " ColorScheme
 " ----------------------------------------------------------------------
-syntax enable
+syntax on
 set t_Co=256
 
 " 256-color for MSYS / MinGW
@@ -70,10 +70,11 @@ let g:solarized_italic=0
 "let g:solarized_visibility="low"
 let g:molokai_original=1
 
-"colorscheme solarized
+" colorscheme solarized
 colorscheme molokai
-"colorscheme jellybeans
-"colorscheme zenburn
+" colorscheme jellybeans
+" colorscheme railscasts
+" colorscheme sexy-railscasts
 
 " ----------------------------------------------------------------------
 " Configurations
@@ -103,7 +104,11 @@ set ttymouse=xterm2
 
 set guifont=Inconsolata_for_Powerline:h13
 let g:Powerline_symbols='fancy'
+
 let g:indent_guides_start_level=2
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
 
 " ----------------------------------------------------------------------
 " Edit
@@ -147,6 +152,13 @@ set clipboard+=unnamed
 set pastetoggle=<C-e>
 
 "---------------------------------------------------------------------------
+" NERDCommenter
+"---------------------------------------------------------------------------
+let NERDSpaceDelims = 1
+nmap ,, <Plug>NERDCommenterToggle
+vmap ,, <Plug>NERDCommenterToggle
+
+"---------------------------------------------------------------------------
 " Tabs
 "---------------------------------------------------------------------------
 "set showtabline=2
@@ -176,9 +188,10 @@ set wildmenu
 set wildmode=list:longest,full
 
 let g:acp_enableAtStartup = 0
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_enable_smart_case = 1
-let g:neocomplcache_enable_underbar_completion = 1
+let g:Neocomplcache_enable_at_startup = 1
+let g:Neocomplcache_enable_smart_case = 1
+let g:Neocomplcache_enable_underbar_completion = 1
+let g:neocomplcache_release_cache_time = 1
 
 highlight Pmenu ctermbg=4
 highlight PmenuSel ctermbg=1
@@ -193,7 +206,6 @@ imap <C-k> <Plug>(neocomplcache_snippets_expand)
 smap <C-k> <Plug>(neocomplcache_snippets_expand)
 inoremap <expr><C-g> neocomplcache#undo_completion()
 inoremap <expr><C-l> neocomplcache#complete_common_string()
-
 
 "---------------------------------------------------------------------------
 " Unite
