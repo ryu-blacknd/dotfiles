@@ -61,17 +61,17 @@ let &t_AB="\e[48;5;%dm"
 
 set background=dark
 let g:solarized_termcolors=256
-let g:solarized_termtrans=1
-let g:solarized_degrade=0
-let g:solarized_bold=1
-let g:solarized_underline=1
-let g:solarized_italic=0
-"let g:solarized_contrast="high"
-"let g:solarized_visibility="low"
-let g:molokai_original=1
+" let g:solarized_termtrans=1
+" let g:solarized_degrade=0
+" let g:solarized_bold=1
+" let g:solarized_underline=1
+" let g:solarized_italic=0
+" let g:solarized_contrast="high"
+" let g:solarized_visibility="low"
+" let g:molokai_original=1
 
-" colorscheme solarized
-colorscheme molokai
+colorscheme solarized
+" colorscheme molokai
 " colorscheme jellybeans
 " colorscheme railscasts
 " colorscheme sexy-railscasts
@@ -102,7 +102,9 @@ set showmode
 set mouse=a
 set ttymouse=xterm2
 
-set guifont=Inconsolata_for_Powerline:h13
+"set guifont=Inconsolata_for_Powerline:h13
+"set guifont=Menlo_for_Powerline:h11
+set guifont=Droid_Sans_Mono_Slashed_for_Powerline:h11
 let g:Powerline_symbols='fancy'
 
 let g:indent_guides_start_level=2
@@ -234,4 +236,10 @@ let g:quickrun_config['markdown'] = {
 \ 'command': 'bluecloth',
 \ 'exec': '%c -f %s'
 \ }
+
+" ----------------------------------------------------------------------
+" Othes
+" ----------------------------------------------------------------------
+autocmd BufRead,BufNewFile /etc/php-fpm.conf set syntax=dosini
+autocmd BufRead,BufNewFile /etc/php-fpm.d/*.conf set syntax=dosini
 
