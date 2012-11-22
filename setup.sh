@@ -1,6 +1,6 @@
 #!/bin/sh
 
-DOT_FILES=( .dir_colors .fonts .screenrc .tmux.conf .vim .vimrc)
+DOT_FILES=( .dir_colors .fonts .tmux.conf .vim .vimrc)
 
 for file in ${DOT_FILES[@]}
 do

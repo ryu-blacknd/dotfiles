@@ -17,13 +17,16 @@ if has('vim_starting')
 endif
 
 NeoBundle 'Shougo/neobundle.vim'
-NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/vimfiler'
+NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/vimproc'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-markdown'
+NeoBundle 'tpope/vim-rails'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'mattn/gist-vim'
@@ -35,16 +38,15 @@ NeoBundle 'othree/eregex.vim'
 NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'lokaltog/vim-powerline'
 NeoBundle 'nathanaelkane/vim-indent-guides'
+NeoBundle 'lilydjwg/colorizer'
 NeoBundle 'taglist.vim'
 NeoBundle 'L9'
 NeoBundle 'FuzzyFinder'
 NeoBundle 'evanmiller/nginx-vim-syntax'
 
-NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'tomasr/molokai'
-NeoBundle 'nanotech/jellybeans.vim'
 NeoBundle 'jpo/vim-railscasts-theme'
-NeoBundle 'oguzbilgic/sexy-railscasts-theme'
+NeoBundle 'ryu-blacknd/vim-nucolors'
 
 filetype plugin indent on
 
@@ -60,21 +62,11 @@ let &t_AF="\e[38;5;%dm"
 let &t_AB="\e[48;5;%dm"
 
 set background=dark
-let g:solarized_termcolors=256
-" let g:solarized_termtrans=1
-" let g:solarized_degrade=0
-" let g:solarized_bold=1
-" let g:solarized_underline=1
-" let g:solarized_italic=0
-" let g:solarized_contrast="high"
-" let g:solarized_visibility="low"
-" let g:molokai_original=1
 
-colorscheme solarized
-" colorscheme molokai
-" colorscheme jellybeans
+colorscheme molokai
 " colorscheme railscasts
-" colorscheme sexy-railscasts
+" colorscheme nucolors
+" colorscheme pomelo
 
 " ----------------------------------------------------------------------
 " Configurations
@@ -102,8 +94,6 @@ set showmode
 set mouse=a
 set ttymouse=xterm2
 
-"set guifont=Inconsolata_for_Powerline:h13
-"set guifont=Menlo_for_Powerline:h11
 set guifont=Droid_Sans_Mono_Slashed_for_Powerline:h11
 let g:Powerline_symbols='fancy'
 
@@ -208,6 +198,13 @@ imap <C-k> <Plug>(neocomplcache_snippets_expand)
 smap <C-k> <Plug>(neocomplcache_snippets_expand)
 inoremap <expr><C-g> neocomplcache#undo_completion()
 inoremap <expr><C-l> neocomplcache#complete_common_string()
+
+"---------------------------------------------------------------------------
+" VimFiler
+"---------------------------------------------------------------------------
+let g:vimfiler_as_default_explorer=1
+let g:vimfiler_safe_mode_by_default=0
+nnoremap <F2> :VimFiler -buffer-name=explorer -split -winwidth=35 -toggle -no-quit<Cr>
 
 "---------------------------------------------------------------------------
 " Unite
