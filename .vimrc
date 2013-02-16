@@ -1,242 +1,150 @@
-" ----------------------------------------------------------------------
-" Encode
-" ----------------------------------------------------------------------
-set encoding=utf-8
-set fileencodings=utf-8,cp932,euc-jp,iso-2022-jp
+"----------------------------------------
+" nocompatible
+"----------------------------------------
 
-" ----------------------------------------------------------------------
-" Plugins
-" ----------------------------------------------------------------------
 set nocompatible
+
+"----------------------------------------
+" neobundle
+"----------------------------------------
 
 filetype off
 
 if has('vim_starting')
-    set runtimepath+=~/.vim/bundle/neobundle.vim
-    call neobundle#rc(expand('~/.vim/bundle'))
+    set runtimepath+=~/.vim/bundle/neobundle.vim/
+    call neobundle#rc(expand('~/.vim/bundle/'))
 endif
 
 NeoBundle 'Shougo/neobundle.vim'
-NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/vimfiler'
+NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/vimproc'
-NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'tpope/vim-surround'
-NeoBundle 'tpope/vim-markdown'
-NeoBundle 'tpope/vim-rails'
-NeoBundle 'thinca/vim-quickrun'
-NeoBundle 'thinca/vim-ref'
+NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'mattn/gist-vim'
 NeoBundle 'mattn/zencoding-vim'
-NeoBundle 'tsukkee/unite-help'
-NeoBundle 'tsukkee/unite-tag'
-NeoBundle 'h1mesuke/unite-outline'
-NeoBundle 'othree/eregex.vim'
 NeoBundle 'scrooloose/nerdcommenter'
-NeoBundle 'lokaltog/vim-powerline'
-NeoBundle 'nathanaelkane/vim-indent-guides'
-NeoBundle 'lilydjwg/colorizer'
-NeoBundle 'taglist.vim'
-NeoBundle 'L9'
-NeoBundle 'FuzzyFinder'
-NeoBundle 'evanmiller/nginx-vim-syntax'
-
-NeoBundle 'tomasr/molokai'
-NeoBundle 'jpo/vim-railscasts-theme'
-NeoBundle 'ryu-blacknd/vim-nucolors'
+NeoBundle 'Lokaltog/vim-powerline'
+NeoBundle 'gtags.vim'
+NeoBundle 'nginx.vim'
+NeoBundle 'hallison/vim-markdown'
+NeoBundle 'nanotech/jellybeans.vim'
 
 filetype plugin indent on
 
-" ----------------------------------------------------------------------
-" ColorScheme
-" ----------------------------------------------------------------------
-syntax on
+"----------------------------------------
+" enable neocomplcache
+"----------------------------------------
+
+let g:neocomplcache_enable_at_startup = 1
+" let g:neocomplcache_enable_insert_char_pre = 1
+inoremap <expr><CR> neocomplcache#smart_close_popup() . "\<CR>"
+inoremap <expr><TAB> pumvisible() ? "\<Down>" : "\<TAB>"
+inoremap <expr><S-TAB> pumvisible() ? "\<Up>" : "\<S-TAB>"
+
+" ---------------------------------------
+" syntax color
+" ---------------------------------------
+
 set t_Co=256
+syntax on
+colorscheme jellybeans
+au BufRead,BufNewFile /etc/nginx/* set ft=nginx
+au BufRead,BufNewFile /etc/php-fpm.conf set ft=php
+au BufRead,BufNewFile /etc/php-fpm.d/* set syntax=dosini
 
-" 256-color for MSYS / MinGW
-let &t_Co=256
-let &t_AF="\e[38;5;%dm"
-let &t_AB="\e[48;5;%dm"
+"----------------------------------------
+" display
+"----------------------------------------
 
-set background=dark
-
-colorscheme molokai
-" colorscheme railscasts
-" colorscheme nucolors
-" colorscheme pomelo
-
-" ----------------------------------------------------------------------
-" Configurations
-" ----------------------------------------------------------------------
-set title
-set number
-set ruler
-"set list
-set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
-"set scrolloff=5
-"set textwidth=0
-set nobackup
-set noswapfile
-"set autoread
-set hidden
-set backspace=indent,eol,start
-"set formatoptions=lmoq
-"set vb t_vb=
-"set browsedir=buffer
-"set whichwrap=b,s,<,>,[,],~
+set scrolloff=10
 set laststatus=2
-set showcmd
-set showmode
-
-set mouse=a
-set ttymouse=xterm2
-
+set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
+set notitle
+" set cursorline " <-- this makes cursor slow
+set number
+" set list
+" set listchars=tab:»\ ,eol:¬
 set guifont=Droid_Sans_Mono_Slashed_for_Powerline:h11
 let g:Powerline_symbols='fancy'
 
-let g:indent_guides_start_level=2
-let g:indent_guides_auto_colors = 0
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
-
-" ----------------------------------------------------------------------
-" Edit
-" ----------------------------------------------------------------------
-set showmatch
-autocmd BufWritePre * :%s/\s\+$//ge
-"autocmd BufWritePre * :%s/\t/    /ge
-"set autoindent
-"set smartindent
-set cindent
+"----------------------------------------
+" tab
+"----------------------------------------
+ 
+set expandtab
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-set expandtab
 set smarttab
+set shiftround
+set nowrap
 
-" ----------------------------------------------------------------------
-" Search
-" ----------------------------------------------------------------------
-set incsearch
-set ignorecase
-set smartcase
-set wrapscan
-set hlsearch
-nmap <Esc><Esc> :nohlsearch<CR><Esc>
+"----------------------------------------
+" edit
+"----------------------------------------
 
-"---------------------------------------------------------------------------
-" Clipboard
-"---------------------------------------------------------------------------
-if has('mac') && !has('gui')
-    nnoremap <silent> <Space>y :.w !pbcopy<CR><CR>
-    vnoremap <silent> <Space>y :w !pbcopy<CR><CR>
-    nnoremap <silent> <Space>p :r !pbpaste<CR>
-    vnoremap <silent> <Space>p :r !pbpaste<CR>
-else
-    noremap <Space>y "+y
-    noremap <Space>p "+p
-endif
-
-set clipboard+=unnamed
+set whichwrap=b,s,h,l,<,>,[,]
+set autoindent
+set smartindent
+set backspace=indent,eol,start
+"set showmatch
+let loaded_matchparen = 1
+vnoremap < <gv
+vnoremap > >gv
+set mouse=a
+set ttymouse=xterm2
 set pastetoggle=<C-e>
 
-"---------------------------------------------------------------------------
+"----------------------------------------
+" search
+"----------------------------------------
+
+set hlsearch
+nmap <Esc><Esc> :nohlsearch<CR><Esc>
+set incsearch
+set ignorecase
+set wrapscan
+set smartcase
+
+"----------------------------------------
+" backup
+"----------------------------------------
+
+set nobackup
+" set backupdir=~/.vim_tmp
+set noswapfile
+" set directory=~/.vim_tmp
+
+"----------------------------------------
+" encoding
+"----------------------------------------
+
+set termencoding=utf-8
+set encoding=utf-8
+
+"----------------------------------------
+" global gtags
+"----------------------------------------
+
+map <C-g> :Gtags
+map <C-h> :Gtags -f %<CR>
+map <C-j> :GtagsCursor<CR>
+map <C-n> :cn<CR>
+map <C-p> :cp<CR>
+
+
+"-----------------------------------------
 " NERDCommenter
-"---------------------------------------------------------------------------
+"-----------------------------------------
 let NERDSpaceDelims = 1
 nmap ,, <Plug>NERDCommenterToggle
 vmap ,, <Plug>NERDCommenterToggle
 
-"---------------------------------------------------------------------------
-" Tabs
-"---------------------------------------------------------------------------
-"set showtabline=2
-nnoremap <Space>t t
-nnoremap <Space>T T
-nnoremap t <Nop>
-nnoremap <silent> tc :<C-u>tabnew<CR>:tabmove<CR>
-nnoremap <silent> tk :<C-u>tabclose<CR>
-nnoremap <silent> tn :<C-u>tabnext<CR>
-nnoremap <silent> tp :<C-u>tabprevious<CR>
+"----------------------------------------
+" zen-coding
+"----------------------------------------
 
-"---------------------------------------------------------------------------
-" FuzzyFinder
-"---------------------------------------------------------------------------
-nnoremap <Space>f f
-nnoremap <Space>F F
-nnoremap f <Nop>
-nnoremap <silent> fb :<C-u>FufBuffer!<CR>
-nnoremap <silent> ff :<C-u>FufFile! <C-r>=expand('%:~:.')[:-1-len(expand('%:~:.:t'))]<CR><CR>
-nnoremap <silent> fm :<C-u>FufMruFile!<CR>
-nnoremap <silent> fc :<C-u>FufRenewCache<CR>
-
-" ----------------------------------------------------------------------
-" Completion
-" ----------------------------------------------------------------------
-set wildmenu
-set wildmode=list:longest,full
-
-let g:acp_enableAtStartup = 0
-let g:Neocomplcache_enable_at_startup = 1
-let g:Neocomplcache_enable_smart_case = 1
-let g:Neocomplcache_enable_underbar_completion = 1
-let g:neocomplcache_release_cache_time = 1
-
-highlight Pmenu ctermbg=4
-highlight PmenuSel ctermbg=1
-highlight PMenuSbar ctermbg=4
-highlight String ctermfg=brown guifg=Orange cterm=none gui=none
-highlight MatchParen guifg=Yellow guibg=DarkCyan
-highlight SignColumn guibg=#101020
-highlight CursorIM guifg=NONE guibg=Red
-highlight CursorLine guifg=NONE guibg=#505050
-
-imap <C-k> <Plug>(neocomplcache_snippets_expand)
-smap <C-k> <Plug>(neocomplcache_snippets_expand)
-inoremap <expr><C-g> neocomplcache#undo_completion()
-inoremap <expr><C-l> neocomplcache#complete_common_string()
-
-"---------------------------------------------------------------------------
-" VimFiler
-"---------------------------------------------------------------------------
-let g:vimfiler_as_default_explorer=1
-let g:vimfiler_safe_mode_by_default=0
-nnoremap <F2> :VimFiler -buffer-name=explorer -split -winwidth=35 -toggle -no-quit<Cr>
-
-"---------------------------------------------------------------------------
-" Unite
-"---------------------------------------------------------------------------
-let g:unite_enable_start_insert=1
-nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
-nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
-nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
-nnoremap <silent> ,um :<C-u>Unite file_mru<CR>
-nnoremap <silent> ,uu :<C-u>Unite buffer file_mru<CR>
-nnoremap <silent> ,ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
-nnoremap <silent> ,uc :<C-u>Unite colorscheme<CR>
-
-augroup Shebang
-    autocmd BufNewFile *.py 0put =\"#!/usr/bin/env python\<nl># -*- coding: utf-8 -*-\<nl>\"|$
-    autocmd BufNewFile *.rb 0put =\"#!/usr/bin/env ruby\<nl># -*- coding: utf-8 -*-\<nl>\"|$
-    autocmd BufNewFile *.tex 0put =\"%&plain\<nl>\"|$
-    autocmd BufNewFile *.\(cc\|hh\) 0put =\"//\<nl>// \".expand(\"<afile>:t\").\" -- \<nl>//\<nl>\"|2|start!
-augroup END
-
-" ----------------------------------------------------------------------
-" Markdown
-" ----------------------------------------------------------------------
-let g:quickrun_config = {}
-let g:quickrun_config['markdown'] = {
-\ 'command': 'bluecloth',
-\ 'exec': '%c -f %s'
-\ }
-
-" ----------------------------------------------------------------------
-" Othes
-" ----------------------------------------------------------------------
-autocmd BufRead,BufNewFile /etc/php-fpm.conf set syntax=dosini
-autocmd BufRead,BufNewFile /etc/php-fpm.d/*.conf set syntax=dosini
+let g:user_zen_settings = { 'indentation':'  ' }
 
