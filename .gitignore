@@ -2,5 +2,4 @@
 *.swp
 *.bak
 .DS_Store
-.vim/bundle/
 
