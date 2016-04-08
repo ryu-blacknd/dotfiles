@@ -2,4 +2,6 @@
 *.swp
 *.bak
 .DS_Store
-
+.vim/*
+!.vim/bundle/
+!.gitkeep
