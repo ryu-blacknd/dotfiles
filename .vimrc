@@ -54,8 +54,8 @@ filetype plugin indent on
 set number
 set nobackup
 set noswapfile
-set tabstop=4
-set softtabstop=4
+set tabstop=2
+set softtabstop=2
 set pastetoggle=<C-e>
 let NERDSpaceDelims = 1
 nmap ,, <Plug>NERDCommenterToggle
