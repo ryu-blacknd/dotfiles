@@ -1,150 +1,64 @@
-"----------------------------------------
-" nocompatible
-"----------------------------------------
-
-set nocompatible
-
-"----------------------------------------
-" neobundle
-"----------------------------------------
-
-filetype off
+if 0 | endif
 
 if has('vim_starting')
-    set runtimepath+=~/.vim/bundle/neobundle.vim/
-    call neobundle#rc(expand('~/.vim/bundle/'))
+  if &compatible
+    set nocompatible
+  endif
+
+  " Required:
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
-NeoBundle 'Shougo/neobundle.vim'
-NeoBundle 'Shougo/vimproc'
-NeoBundle 'Shougo/vimshell'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'mattn/gist-vim'
-NeoBundle 'mattn/zencoding-vim'
-NeoBundle 'scrooloose/nerdcommenter'
-NeoBundle 'Lokaltog/vim-powerline'
-NeoBundle 'gtags.vim'
-NeoBundle 'nginx.vim'
-NeoBundle 'hallison/vim-markdown'
-NeoBundle 'nanotech/jellybeans.vim'
+" Required:
+call neobundle#begin(expand('~/.vim/bundle/'))
 
+" Let NeoBundle manage NeoBundle
+" Required:
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+" My Bundles here:
+" Refer to |:NeoBundle-examples|.
+" Note: You don't set neobundle setting in .gvimrc!
+
+NeoBundle 'Shougo/vimproc.vim', {
+			\ 'build' : {
+			\     'windows' : 'tools\\update-dll-mingw',
+			\     'cygwin' : 'make -f make_cygwin.mak',
+			\     'mac' : 'make',
+			\     'linux' : 'make',
+			\     'unix' : 'gmake',
+			\    },
+			\ }
+"NeoBundle 'Shougo/vimshell'
+"NeoBundle 'Shougo/unite.vim'
+"NeoBundle 'Shougo/neocomplcache'
+"NeoBundle 'Shougo/vimfiler.vim'
+"NeoBundle 'lilydjwg/colorizer'
+"NeoBundle 'tpope/vim-fugitive'
+":set statusline+=%{fugitive#statusline()}
+"NeoBundle 'itchyny/lightline.vim'
+"NeoBundle 'hallison/vim-markdown'
+NeoBundle 'scrooloose/nerdcommenter'
+NeoBundle 'w0ng/vim-hybrid'
+
+call neobundle#end()
+
+syntax on
+set t_Co=256
+colorscheme hybrid
+
+" Required:
 filetype plugin indent on
 
-"----------------------------------------
-" enable neocomplcache
-"----------------------------------------
-
-let g:neocomplcache_enable_at_startup = 1
-" let g:neocomplcache_enable_insert_char_pre = 1
-inoremap <expr><CR> neocomplcache#smart_close_popup() . "\<CR>"
-inoremap <expr><TAB> pumvisible() ? "\<Down>" : "\<TAB>"
-inoremap <expr><S-TAB> pumvisible() ? "\<Up>" : "\<S-TAB>"
-
-" ---------------------------------------
-" syntax color
-" ---------------------------------------
-
-set t_Co=256
-syntax on
-colorscheme jellybeans
-au BufRead,BufNewFile /etc/nginx/* set ft=nginx
-au BufRead,BufNewFile /etc/php-fpm.conf set ft=php
-au BufRead,BufNewFile /etc/php-fpm.d/* set syntax=dosini
-
-"----------------------------------------
-" display
-"----------------------------------------
-
-set scrolloff=10
-set laststatus=2
-set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
-set notitle
-" set cursorline " <-- this makes cursor slow
-set number
-" set list
-" set listchars=tab:»\ ,eol:¬
-set guifont=Droid_Sans_Mono_Slashed_for_Powerline:h11
-let g:Powerline_symbols='fancy'
-
-"----------------------------------------
-" tab
-"----------------------------------------
- 
-set expandtab
+set nobackup
+set noswapfile
 set tabstop=4
 set softtabstop=4
-set shiftwidth=4
-set smarttab
-set shiftround
-set nowrap
-
-"----------------------------------------
-" edit
-"----------------------------------------
-
-set whichwrap=b,s,h,l,<,>,[,]
-set autoindent
-set smartindent
-set backspace=indent,eol,start
-"set showmatch
-let loaded_matchparen = 1
-vnoremap < <gv
-vnoremap > >gv
-set mouse=a
-set ttymouse=xterm2
 set pastetoggle=<C-e>
-
-"----------------------------------------
-" search
-"----------------------------------------
-
-set hlsearch
-nmap <Esc><Esc> :nohlsearch<CR><Esc>
-set incsearch
-set ignorecase
-set wrapscan
-set smartcase
-
-"----------------------------------------
-" backup
-"----------------------------------------
-
-set nobackup
-" set backupdir=~/.vim_tmp
-set noswapfile
-" set directory=~/.vim_tmp
-
-"----------------------------------------
-" encoding
-"----------------------------------------
-
-set termencoding=utf-8
-set encoding=utf-8
-
-"----------------------------------------
-" global gtags
-"----------------------------------------
-
-map <C-g> :Gtags
-map <C-h> :Gtags -f %<CR>
-map <C-j> :GtagsCursor<CR>
-map <C-n> :cn<CR>
-map <C-p> :cp<CR>
-
-
-"-----------------------------------------
-" NERDCommenter
-"-----------------------------------------
 let NERDSpaceDelims = 1
 nmap ,, <Plug>NERDCommenterToggle
 vmap ,, <Plug>NERDCommenterToggle
 
-"----------------------------------------
-" zen-coding
-"----------------------------------------
-
-let g:user_zen_settings = { 'indentation':'  ' }
-
+" If there are uninstalled bundles found on startup,
+" this will conveniently prompt you to install them.
+NeoBundleCheck
