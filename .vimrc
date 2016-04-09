@@ -51,6 +51,7 @@ colorscheme hybrid
 " Required:
 filetype plugin indent on
 
+set number
 set nobackup
 set noswapfile
 set tabstop=4

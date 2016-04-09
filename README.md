@@ -16,3 +16,9 @@ colorschemeにはhybridを採用しました。Tomorrow Night, jellybeans, solar
 $ mkdir -p ~/.vim/bundle
 $ git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
 ```
+
+### スクリーンショット
+
+PHPファイルを開いてみたところです。
+
+![](http://blacknd.com/wp-content/uploads/2016/04/20160409-114955.png)
