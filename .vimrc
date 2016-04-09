@@ -54,8 +54,12 @@ filetype plugin indent on
 set number
 set nobackup
 set noswapfile
+set expandtab
 set tabstop=2
+set shiftwidth=2
 set softtabstop=2
+set autoindent
+set smartindent
 set pastetoggle=<C-e>
 let NERDSpaceDelims = 1
 nmap ,, <Plug>NERDCommenterToggle
